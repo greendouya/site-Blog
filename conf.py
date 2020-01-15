@@ -3,7 +3,7 @@
 """
 
 # For Maverick
-site_prefix = "https://blog.imalan.cn/"
+site_prefix = "http://blog.wooocloud.com/"
 source_dir = "../src/"
 build_dir = "../dist/"
 index_page_size = 10
@@ -15,46 +15,26 @@ template = {
 }
 enable_jsdelivr = {
     "enabled": True,
-    "repo": "AlanDecode/site-Blog@gh-pages"
+    "repo": "greendouya/site-Blog@gh-pages"
 }
 category_by_folder = True
 for_manual_build_trigger = 2
 
 # 站点设置
-site_name = "無文字 | 三無計劃"
+site_name = "稳妥国字脸"
 site_logo = "${static_prefix}android-chrome-512x512.png"
-site_build_date = "2017-06-29T12:00+08:00"
-author = "熊猫小A"
-email = "hi@imalan.cn"
-author_homepage = "https://www.imalan.cn"
-description = "只坚持一种正义。我的正义。"
-key_words = ['Maverick', '熊猫小A', 'Galileo', 'blog']
+site_build_date = "2020-01-15 16:30"
+author = "Dragon"
+email = "gotspinach@foxmail.com"
+author_homepage = "http://blog.wooocloud.com"
+description = "7.24也算个节日了么?"
+key_words = ['Linux', 'Docker', 'ELK', '运维']
 language = 'zh-CN'
 external_links = [
     {
         "name": "Maverick",
         "url": "https://github.com/AlanDecode/Maverick",
         "brief": "🏄‍ Go My Own Way."
-    },
-    {
-        "name": "三無計劃",
-        "url": "https://www.imalan.cn",
-        "brief": "三是虚指。至于是哪三无，我唔知。"
-    },
-    {
-        "name": "無知識",
-        "url": "https://wiki.imalan.cn",
-        "brief": "熊猫小A的Wiki站点。隶属于「三无计划」。"
-    },
-    {
-        "name": "無項目",
-        "url": "https://lab.imalan.cn",
-        "brief": "熊猫小A的实验室。隶属于「三无计划」。"
-    },
-    {
-        "name": "無消息",
-        "url": "https://t.me/triple_null",
-        "brief": "熊猫小A的广播。隶属于「三无计划」。"
     }
 ]
 nav = [
@@ -83,30 +63,30 @@ nav = [
 social_links = [
     {
         "name": "Twitter",
-        "url": "https://twitter.com/AlanDecode",
+        "url": "",
         "icon": "gi gi-twitter"
     },
     {
         "name": "GitHub",
-        "url": "https://github.com/AlanDecode",
+        "url": "https://github.com/greendouya",
         "icon": "gi gi-github"
     },
     {
         "name": "Weibo",
-        "url": "https://weibo.com/5245109677/",
+        "url": "",
         "icon": "gi gi-weibo"
     }
 ]
 
-valine = {
-    "enable": True,
-    "el": '#vcomments',
-    "appId": "6chFXPTjrjYnjFk9duROcboN-gzGzoHsz",
-    "appKey": "c1CRooaFmpLs4xi7x3YLm3ma",
-    "visitor": True,
-    "recordIP": True,
-    "placeholder": "来畅所欲言吧~"
-}
+# valine = {
+#     "enable": True,
+#     "el": '#vcomments',
+#     "appId": "6chFXPTjrjYnjFk9duROcboN-gzGzoHsz",
+#     "appKey": "c1CRooaFmpLs4xi7x3YLm3ma",
+#     "visitor": True,
+#     "recordIP": True,
+#     "placeholder": "来畅所欲言吧~"
+# }
 
 head_addon = r'''
 <meta http-equiv="x-dns-prefetch-control" content="on">
@@ -123,16 +103,15 @@ head_addon = r'''
 <link rel="icon" type="image/png" sizes="16x16" href="${static_prefix}favicon-16x16.png?v=yyLyaqbyRG">
 <link rel="mask-icon" href="${static_prefix}safari-pinned-tab.svg?v=yyLyaqbyRG" color="#505050">
 <link rel="shortcut icon" href="${static_prefix}favicon.ico?v=yyLyaqbyRG">
-<meta name="application-name" content="三無計劃">
-<meta name="apple-mobile-web-app-title" content="三無計劃">
+<meta name="application-name" content="稳妥国字脸">
+<meta name="apple-mobile-web-app-title" content="稳妥国字脸">
 <meta name="msapplication-TileColor" content="#000000">
 <meta name="theme-color" content="#000000">
 <meta name="baidu-site-verification" content="9BEwwo6Ibg" />
 '''
 
 footer_addon = r'''
-<a no-style href="http://beian.miit.gov.cn" target="_blank">京ICP备18000133号-1</a> | 
-<a no-style href="https://www.upyun.com" target="_blank">又拍云</a>
+<a no-style href="http://beian.miit.gov.cn" target="_blank"></a>
 '''
 
 body_addon = r'''
