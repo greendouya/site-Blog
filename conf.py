@@ -3,7 +3,7 @@
 """
 
 # For Maverick
-site_prefix = "http://blog.wooocloud.com/"
+site_prefix = "https://blog.wooocloud.com/"
 source_dir = "../src/"
 build_dir = "../dist/"
 index_page_size = 10
