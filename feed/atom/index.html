@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>https://blog.wooocloud.com/</id><title>稳妥国字脸</title><updated>2020-01-16T06:35:46.132728+08:06</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email></author><link href="https://blog.wooocloud.com/" rel="alternate"/><generator uri="http://lkiesow.github.io/python-feedgen" version="0.8.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</logo><subtitle>7.24也算个节日了么?</subtitle><entry><id>https://blog.wooocloud.com/archives/first-blog/</id><title>First Blog</title><updated>2020-01-16T06:35:46.132919+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;这是第一篇博客
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>https://blog.wooocloud.com/</id><title>稳妥国字脸</title><updated>2020-01-16T06:51:45.019900+08:06</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email></author><link href="https://blog.wooocloud.com/" rel="alternate"/><generator uri="http://lkiesow.github.io/python-feedgen" version="0.8.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</logo><subtitle>7.24也算个节日了么?</subtitle><entry><id>https://blog.wooocloud.com/archives/first-blog/</id><title>First Blog</title><updated>2020-01-16T06:51:45.020037+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;这是第一篇博客
 感谢&lt;code&gt;Maverick&lt;/code&gt; &amp;amp; &lt;code&gt;Galileo&lt;/code&gt;
 感谢&lt;a href="https://github.com/AlanDecode"&gt;AlanDecode&lt;/a&gt;&lt;/p&gt;
-</content><link href="https://blog.wooocloud.com/archives/first-blog/" rel="alternate"/><published>2020-01-16T09:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/vim-modify-save/</id><title>vim自动备份修改之前的文件</title><updated>2020-01-16T06:35:46.132878+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;vim ~/.vimrc&lt;/p&gt;
+</content><link href="https://blog.wooocloud.com/archives/first-blog/" rel="alternate"/><published>2020-01-16T09:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/vim-modify-save/</id><title>vim自动备份修改之前的文件</title><updated>2020-01-16T06:51:45.020009+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;vim ~/.vimrc&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;set backup
 function Bkdir()
@@ -16,7 +16,7 @@ endfunction
 au BufWrite * call Bkdir()
 autocmd BufWritePre * let &amp;amp;bex = '_'.strftime("%Y%m%d_%H_%M_%S")
 let &amp;amp;backupdir=expand("$HOME/.vim/backup").expand("%:p:h")&lt;/code&gt;&lt;/pre&gt;
-</content><link href="https://blog.wooocloud.com/archives/vim-modify-save/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/openvpn-in-centos7/</id><title>CentOS7部署openvpn</title><updated>2020-01-16T06:35:46.132804+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;h3&gt;安装软件包&lt;/h3&gt;
+</content><link href="https://blog.wooocloud.com/archives/vim-modify-save/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/openvpn-in-centos7/</id><title>CentOS7部署openvpn</title><updated>2020-01-16T06:51:45.019958+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;h3&gt;安装软件包&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;yum install -y epel-release
 yum install -y openvpn easy-rsa openssl openssl-devel lzo lzo-devel pam pam-devel automake pkgconfig&lt;/code&gt;&lt;/pre&gt;
@@ -53,8 +53,7 @@ your newly created PKI dir is: /etc/openvpn/easy-rsa/pki
 ./easyrsa build-ca
 Note: using Easy-RSA configuration from: ./vars                                  #使用vars文件里面配置的信息
 Generating a 2048 bit RSA private key
-.................+++
-........................................................................................+++
+
 writing new private key to '/etc/openvpn/easy-rsa/pki/private/ca.key.Lg8IKADc4Q'
 Enter PEM pass phrase:                                                                      # 设置ca密码
 Verifying - Enter PEM pass phrase:                                                     # 重新输入上面的密码
@@ -75,8 +74,7 @@ Your new CA certificate file for publishing is at:
 ./easyrsa gen-req opserver nopass
 Note: using Easy-RSA configuration from: ./vars                             #使用vars文件里面配置的信息
 Generating a 2048 bit RSA private key
-.....................................+++
-................................................................................................+++
+
 writing new private key to '/etc/openvpn/easy-rsa/pki/private/opserver.key.yuG9HRsSlU'
 -----
 You are about to be asked to enter information that will be incorporated
@@ -121,7 +119,7 @@ Certificate created at: /etc/openvpn/easy-rsa/pki/issued/opserver.crt          #
 Note: using Easy-RSA configuration from: ./vars
 Generating DH parameters, 2048 bit long safe prime, generator 2
 This is going to take a long time
-............................................................+...........................................................+.......................................................................................................+...........+..........................................................................................................................................................................................................................................................................+..........................................
+
 DH parameters of size 2048 created at /etc/openvpn/pki/dh.pem                 #dh证书路径
 
 cd /etc/openvpn

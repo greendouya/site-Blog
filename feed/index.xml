@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>稳妥国字脸</title><link>https://blog.wooocloud.com/</link><description>7.24也算个节日了么?</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</url><title>稳妥国字脸</title><link>https://blog.wooocloud.com/</link></image><language>zh-CN</language><lastBuildDate>Thu, 16 Jan 2020 06:35:46 +0806</lastBuildDate><pubDate>Thu, 16 Jan 2020 06:35:46 +0806</pubDate><item><title>First Blog</title><link>https://blog.wooocloud.com/archives/first-blog/</link><description>&lt;p&gt;这是第一篇博客
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>稳妥国字脸</title><link>https://blog.wooocloud.com/</link><description>7.24也算个节日了么?</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</url><title>稳妥国字脸</title><link>https://blog.wooocloud.com/</link></image><language>zh-CN</language><lastBuildDate>Thu, 16 Jan 2020 06:51:45 +0806</lastBuildDate><pubDate>Thu, 16 Jan 2020 06:51:45 +0806</pubDate><item><title>First Blog</title><link>https://blog.wooocloud.com/archives/first-blog/</link><description>&lt;p&gt;这是第一篇博客
 感谢&lt;code&gt;Maverick&lt;/code&gt; &amp;amp; &lt;code&gt;Galileo&lt;/code&gt;
 感谢&lt;a href="https://github.com/AlanDecode"&gt;AlanDecode&lt;/a&gt;&lt;/p&gt;
 </description><author>gotspinach@foxmail.com (Dragon)</author><guid isPermaLink="true">https://blog.wooocloud.com/archives/first-blog/</guid><pubDate>Thu, 16 Jan 2020 09:00:00 +0806</pubDate></item><item><title>vim自动备份修改之前的文件</title><link>https://blog.wooocloud.com/archives/vim-modify-save/</link><description>&lt;p&gt;vim ~/.vimrc&lt;/p&gt;
@@ -53,8 +53,7 @@ your newly created PKI dir is: /etc/openvpn/easy-rsa/pki
 ./easyrsa build-ca
 Note: using Easy-RSA configuration from: ./vars                                  #使用vars文件里面配置的信息
 Generating a 2048 bit RSA private key
-.................+++
-........................................................................................+++
+
 writing new private key to '/etc/openvpn/easy-rsa/pki/private/ca.key.Lg8IKADc4Q'
 Enter PEM pass phrase:                                                                      # 设置ca密码
 Verifying - Enter PEM pass phrase:                                                     # 重新输入上面的密码
@@ -75,8 +74,7 @@ Your new CA certificate file for publishing is at:
 ./easyrsa gen-req opserver nopass
 Note: using Easy-RSA configuration from: ./vars                             #使用vars文件里面配置的信息
 Generating a 2048 bit RSA private key
-.....................................+++
-................................................................................................+++
+
 writing new private key to '/etc/openvpn/easy-rsa/pki/private/opserver.key.yuG9HRsSlU'
 -----
 You are about to be asked to enter information that will be incorporated
@@ -121,7 +119,7 @@ Certificate created at: /etc/openvpn/easy-rsa/pki/issued/opserver.crt          #
 Note: using Easy-RSA configuration from: ./vars
 Generating DH parameters, 2048 bit long safe prime, generator 2
 This is going to take a long time
-............................................................+...........................................................+.......................................................................................................+...........+..........................................................................................................................................................................................................................................................................+..........................................
+
 DH parameters of size 2048 created at /etc/openvpn/pki/dh.pem                 #dh证书路径
 
 cd /etc/openvpn
