@@ -13,13 +13,13 @@ tags:
 excerpt: 暂无加入用户认证
 ---
 
-1. 安装软件包
+> 安装软件包
 ```
 yum install -y epel-release
 yum install -y openvpn easy-rsa openssl openssl-devel lzo lzo-devel pam pam-devel automake pkgconfig
 ```
 
-2. server端 制作证书，密钥等文件
+> server端 制作证书，密钥等文件
 ```
 # 复制服务端配置文件至openvpn的根目录
 cp /usr/share/doc/openvpn-2.4.8/sample/sample-config-files/server.conf /etc/openvpn/
@@ -191,20 +191,20 @@ sz /etc/openvpn/client/pki/private/client.key
 sz /etc/openvpn/easy-rsa/pki/ca.crt
 sz /etc/openvpn/ta.key
 ```
-    
-3. 开启OpenVPN服务器的网卡转发功能
+
+> 开启OpenVPN服务器的网卡转发功能
 ```
 echo "net.ipv4.ip_forward = 1" >>/etc/sysctl.conf
 sysctl -p
 ```
-    
-4. 添加nat规则并生效
+  
+> 添加nat规则并生效
 ```
 iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o enp0s31f6 -j MASQUERADE
 iptables-save
 ```
 
-5. 客户端配置文件client.opvn
+> 客户端配置文件client.opvn
 ```
 client
 dev tun   
@@ -224,8 +224,8 @@ comp-lzo
 verb 3  
 ```
 
-6. 将下载到本地的客户端证书和客户端配置文件拷贝至openvpn目录的config目录中
+> 将下载到本地的客户端证书和客户端配置文件拷贝至openvpn目录的config目录中
 
-7. 启动
+> 启动
 
-# 参考: [Centos7 安装openvpn by easy-rsa3.0](https://segmentfault.com/a/1190000019502850) 操作整理
+###### 参考: [Centos7 安装openvpn by easy-rsa3.0](https://segmentfault.com/a/1190000019502850) 操作整理
