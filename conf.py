@@ -49,11 +49,11 @@ nav = [
         "url": "${site_prefix}archives/",
         "target": "_self"
     },
-    {
-        "name": "友链",
-        "url": "${site_prefix}links/",
-        "target": "_self"
-    },
+    # {
+    #     "name": "友链",
+    #     "url": "${site_prefix}links/",
+    #     "target": "_self"
+    # },
     {
         "name": "关于",
         "url": "${site_prefix}about/",

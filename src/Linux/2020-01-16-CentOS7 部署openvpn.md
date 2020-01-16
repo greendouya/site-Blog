@@ -50,12 +50,12 @@ your newly created PKI dir is: /etc/openvpn/easy-rsa/pki
 
 # 使用vars文件里面配置的信息创建ca证书,中间会提示输入密码,记住此密码,后期需要使用
 ./easyrsa build-ca
-Note: using Easy-RSA configuration from: ./vars                                  #使用vars文件里面配置的信息
+Note: using Easy-RSA configuration from: ./vars # 使用vars文件里面配置的信息
 Generating a 2048 bit RSA private key
 
 writing new private key to '/etc/openvpn/easy-rsa/pki/private/ca.key.Lg8IKADc4Q'
-Enter PEM pass phrase:                                                                      # 设置ca密码
-Verifying - Enter PEM pass phrase:                                                     # 重新输入上面的密码
+Enter PEM pass phrase:# 设置ca密码
+Verifying - Enter PEM pass phrase:# 重新输入上面的密码
 -----
 You are about to be asked to enter information that will be incorporated
 into your certificate request.
@@ -64,7 +64,7 @@ There are quite a few fields but you can leave some blank
 For some fields there will be a default value,
 If you enter '.', the field will be left blank.
 -----
-Common Name (eg: your user, host, or server name) [Easy-RSA CA]:         # 直接回车，就是默认的CA作为名字,也可自自定义,本次使用opserver
+Common Name (eg: your user, host, or server name) [Easy-RSA CA]:# 直接回车,就是默认的CA作为名字,也可自定义,本次使用opserver
 CA creation complete and you may now import and sign cert requests.
 Your new CA certificate file for publishing is at:
 /etc/openvpn/easy-rsa/pki/ca.crt
@@ -83,7 +83,7 @@ There are quite a few fields but you can leave some blank
 For some fields there will be a default value,
 If you enter '.', the field will be left blank.
 -----
-Common Name (eg: your user, host, or server name) [server]:                     #直接回车，默认名字为server,也可自定义,本次使用opserver
+Common Name (eg: your user, host, or server name) [server]:# 直接回车,默认名字为server,也可自定义,本次使用opserver
 Keypair and certificate request completed. Your files are:
 req: /etc/openvpn/easy-rsa/pki/reqs/opserver.req
 key: /etc/openvpn/easy-rsa/pki/private/opserver.key
@@ -125,8 +125,10 @@ cd /etc/openvpn
 
 # 生成ta.key
 openvpn --genkey --secret ta.key
+```
 
-# 客户端证书
+### 客户端证书
+```
 # 为了便于区别，我们把客户端使用的证书存放在新的路径。/etc/openvpn/client,证书制作流程如server
 mkdir -p /etc/openvpn/client
 
@@ -226,4 +228,4 @@ verb 3
 
 ### 启动
 
-###### 参考: [Centos7 安装openvpn by easy-rsa3.0](https://segmentfault.com/a/1190000019502850) 操作整理
+### 参考: [Centos7 安装openvpn by easy-rsa3.0](https://segmentfault.com/a/1190000019502850) 操作整理
