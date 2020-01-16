@@ -23,19 +23,20 @@
         }
     </script>
     
-<title>标签: Github - 稳妥国字脸</title>
+<title>vim自动备份修改之前的文件 - 稳妥国字脸</title>
 <meta name="author" content="Dragon" />
-<meta name="description" content="7.24也算个节日了么?" />
-<meta property="og:title" content="标签: Github - 稳妥国字脸" />
-<meta property="og:description" content="7.24也算个节日了么?" />
+<meta name="description" content="vim自动备份修改之前的文件" />
+<meta property="og:title" content="vim自动备份修改之前的文件 - 稳妥国字脸" />
+<meta property="og:description" content="vim自动备份修改之前的文件" />
 <meta property="og:site_name" content="稳妥国字脸" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://blog.wooocloud.com/tag/Github/" />
-<meta property="og:image" content="稳妥国字脸" />
-<meta name="twitter:title" content="标签: Github - 稳妥国字脸" />
-<meta name="twitter:description" content="7.24也算个节日了么?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.wooocloud.com/archives/vim-modify-save/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2020-01-16T12:00:00-00.00" />
+<meta name="twitter:title" content="vim自动备份修改之前的文件 - 稳妥国字脸" />
+<meta name="twitter:description" content="vim自动备份修改之前的文件" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png" />
+<meta name="twitter:image" content="" />
 
 
     
@@ -80,34 +81,70 @@
             <div class="wrapper">
                 
 <main>    
-    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">vim自动备份修改之前的文件</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>Dragon</span>
+                <time>
+                    2020-01-16
+                </time>
+                
+                in <a no-style class="category" href="https://blog.wooocloud.com/category/Linux/">
+                    Linux
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <p>vim ~/.vimrc</p>
 
-<section id="ga-archive_list" class="ga-section" data-title="#Github">
-    <ul>
-        
-        <li>
-            <h1><a target="_self" class="ga-highlight" href="https://blog.wooocloud.com/archives/first-blog/">First Blog</a></h1>
-            <time class="ga-mono" datetime="2020-01-16T09:00:00-00.00">
-                2020-01-16
-            </time>
-        </li>
-        
-        <li>
-            <h1><a target="_self" class="ga-highlight" href="https://blog.wooocloud.com/archives/first-blog/">First Blog</a></h1>
-            <time class="ga-mono" datetime="2020-01-16T09:00:00-00.00">
-                2020-01-16
-            </time>
-        </li>
-        
-    </ul>
+<pre><code>set backup
+function Bkdir()
+    let $BKODIR=expand("$HOME/.vim/backup")
+    let $RUNTIMEPATH=expand("%:p:h")
+    let $BKDIR=$BKODIR.$RUNTIMEPATH
+    if !isdirectory(expand("$BKDIR"))
+        call mkdir(expand("$BKDIR"),"p",0750)
+    endif
+endfunction
+au BufWrite * call Bkdir()
+autocmd BufWritePre * let &amp;bex = '_'.strftime("%Y%m%d_%H_%M_%S")
+let &amp;backupdir=expand("$HOME/.vim/backup").expand("%:p:h")</code></pre>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="https://blog.wooocloud.com/tag/Linux/">#Linux</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="https://blog.wooocloud.com/tag/Vim/">#Vim</a>
+    </span>
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="https://blog.wooocloud.com/archives/first-blog/">First Blog</a>
+        <p class="yue">新博客,新气象</p>
+    </div>
+
 </section>
 
-<section class="ga-section ga-mono" id="ga-pager">
-    
-    <span>Page 1 of 1</span>
-    
-</section>
 
+    
 
 </main>
 

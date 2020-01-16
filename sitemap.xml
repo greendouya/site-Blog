@@ -19,7 +19,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-    <loc>https://blog.wooocloud.com/archives/second-blog/</loc>
+    <loc>https://blog.wooocloud.com/archives/vim-modify-save/</loc>
+    <lastmod>2020-01-16</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
+</url>
+
+<url>
+    <loc>https://blog.wooocloud.com/archives/first-blog/</loc>
     <lastmod>2020-01-16</lastmod>
     <changefreq>always</changefreq>
     <priority>0.5</priority>
