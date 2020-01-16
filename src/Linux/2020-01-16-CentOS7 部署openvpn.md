@@ -209,7 +209,7 @@ iptables-save
 client
 dev tun   
 proto tcp
-remote 113.57.130.123 1194
+remote server端IP 1194
 resolv-retry infinite
 nobind
 persist-key
