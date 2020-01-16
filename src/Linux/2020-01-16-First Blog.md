@@ -6,11 +6,13 @@ date: 2020-01-16 09:00
 status: publish
 author: Dragon
 categories: 
-  - Linux
+  - Github
 tags: 
-  - Linux
+  - Github
   - Blog
 excerpt: 新博客,新气象
 ---
 
-这是第一篇博客,感谢`Maverick` & `Galileo`
+这是第一篇博客
+感谢`Maverick` & `Galileo`
+感谢Fork[AlanDecode](https://github.com/AlanDecode)
