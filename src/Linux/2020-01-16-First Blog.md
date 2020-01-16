@@ -1,6 +1,6 @@
 ---
 layout: post
-title: First-Blog
+title: First Blog
 slug: first-blog
 date: 2020-01-16 09:00
 status: publish
