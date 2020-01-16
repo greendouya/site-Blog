@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>https://blog.wooocloud.com/</id><title>稳妥国字脸</title><updated>2020-01-16T06:29:59.802865+08:06</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email></author><link href="https://blog.wooocloud.com/" rel="alternate"/><generator uri="http://lkiesow.github.io/python-feedgen" version="0.8.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</logo><subtitle>7.24也算个节日了么?</subtitle><entry><id>https://blog.wooocloud.com/archives/first-blog/</id><title>First Blog</title><updated>2020-01-16T06:29:59.803073+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;这是第一篇博客
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>https://blog.wooocloud.com/</id><title>稳妥国字脸</title><updated>2020-01-16T06:33:05.948310+08:06</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email></author><link href="https://blog.wooocloud.com/" rel="alternate"/><generator uri="http://lkiesow.github.io/python-feedgen" version="0.8.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</logo><subtitle>7.24也算个节日了么?</subtitle><entry><id>https://blog.wooocloud.com/archives/first-blog/</id><title>First Blog</title><updated>2020-01-16T06:33:05.948440+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;这是第一篇博客
 感谢&lt;code&gt;Maverick&lt;/code&gt; &amp;amp; &lt;code&gt;Galileo&lt;/code&gt;
 感谢&lt;a href="https://github.com/AlanDecode"&gt;AlanDecode&lt;/a&gt;&lt;/p&gt;
-</content><link href="https://blog.wooocloud.com/archives/first-blog/" rel="alternate"/><published>2020-01-16T09:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/vim-modify-save/</id><title>vim自动备份修改之前的文件</title><updated>2020-01-16T06:29:59.803033+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;vim ~/.vimrc&lt;/p&gt;
+</content><link href="https://blog.wooocloud.com/archives/first-blog/" rel="alternate"/><published>2020-01-16T09:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/vim-modify-save/</id><title>vim自动备份修改之前的文件</title><updated>2020-01-16T06:33:05.948409+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;vim ~/.vimrc&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;set backup
 function Bkdir()
@@ -16,18 +16,15 @@ endfunction
 au BufWrite * call Bkdir()
 autocmd BufWritePre * let &amp;amp;bex = '_'.strftime("%Y%m%d_%H_%M_%S")
 let &amp;amp;backupdir=expand("$HOME/.vim/backup").expand("%:p:h")&lt;/code&gt;&lt;/pre&gt;
-</content><link href="https://blog.wooocloud.com/archives/vim-modify-save/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/openvpn-in-centos7/</id><title>CentOS7部署openvpn</title><updated>2020-01-16T06:29:59.802915+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;安装软件包&lt;/p&gt;
+</content><link href="https://blog.wooocloud.com/archives/vim-modify-save/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/openvpn-in-centos7/</id><title>CentOS7部署openvpn</title><updated>2020-01-16T06:33:05.948360+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;blockquote&gt;&lt;p&gt;安装软件包&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;yum install -y epel-release
 yum install -y openvpn easy-rsa openssl openssl-devel lzo lzo-devel pam pam-devel automake pkgconfig&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;server端 制作证书，密钥等文件
-```
-# 复制服务端配置文件至openvpn的根目录
-cp /usr/share/doc/openvpn-2.4.8/sample/sample-config-files/server.conf /etc/openvpn/&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;server端 制作证书，密钥等文件
+```&lt;/p&gt;
+&lt;h1&gt;复制服务端配置文件至openvpn的根目录&lt;/h1&gt;
+&lt;p&gt;cp /usr/share/doc/openvpn-2.4.8/sample/sample-config-files/server.conf /etc/openvpn/&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h1&gt;创建制作证书目录&lt;/h1&gt;
 &lt;p&gt;mkdir /etc/openvpn/easy-rsa&lt;/p&gt;
 &lt;p&gt;cd /etc/openvpn/&lt;/p&gt;
@@ -164,17 +161,17 @@ sz /etc/openvpn/easy-rsa/pki/ca.crt
 sz /etc/openvpn/ta.key&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;
-3. 开启OpenVPN服务器的网卡转发功能&lt;/code&gt;&lt;/pre&gt;
+&amp;gt; 开启OpenVPN服务器的网卡转发功能&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;echo "net.ipv4.ip_forward = 1" &amp;gt;&amp;gt;/etc/sysctl.conf
 sysctl -p&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;
-4. 添加nat规则并生效&lt;/code&gt;&lt;/pre&gt;
+&amp;gt; 添加nat规则并生效&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o enp0s31f6 -j MASQUERADE
 iptables-save&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;
-5. 客户端配置文件client.opvn&lt;/code&gt;&lt;/pre&gt;
+&amp;gt; 客户端配置文件client.opvn&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;client
 dev tun&lt;br&gt;
 proto tcp
@@ -192,11 +189,8 @@ cipher AES-256-CBC
 comp-lzo
 verb 3&lt;br&gt;
 ```&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;将下载到本地的客户端证书和客户端配置文件拷贝至openvpn目录的config目录中&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;启动&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1&gt;参考: &lt;a href="https://segmentfault.com/a/1190000019502850"&gt;Centos7 安装openvpn by easy-rsa3.0&lt;/a&gt; 操作整理&lt;/h1&gt;
+&lt;blockquote&gt;&lt;p&gt;将下载到本地的客户端证书和客户端配置文件拷贝至openvpn目录的config目录中&lt;/p&gt;
+&lt;p&gt;启动&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6&gt;参考: &lt;a href="https://segmentfault.com/a/1190000019502850"&gt;Centos7 安装openvpn by easy-rsa3.0&lt;/a&gt; 操作整理&lt;/h6&gt;
 </content><link href="https://blog.wooocloud.com/archives/openvpn-in-centos7/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry></feed>

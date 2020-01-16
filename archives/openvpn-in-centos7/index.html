@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/49c4873a32cb85a4ea9f8bfb56cb6d0c.json"
+            api: "https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/7db28ae35659f504343a64a16a31070b.json"
         }
     </script>
     
@@ -97,18 +97,15 @@
                 
             </span>
             <div class="ga-content_body">
-                <ol>
-<li><p>安装软件包</p>
+                <blockquote><p>安装软件包</p>
 
 <pre><code>yum install -y epel-release
 yum install -y openvpn easy-rsa openssl openssl-devel lzo lzo-devel pam pam-devel automake pkgconfig</code></pre>
-</li>
-<li><p>server端 制作证书，密钥等文件
-```
-# 复制服务端配置文件至openvpn的根目录
-cp /usr/share/doc/openvpn-2.4.8/sample/sample-config-files/server.conf /etc/openvpn/</p>
-</li>
-</ol>
+<p>server端 制作证书，密钥等文件
+```</p>
+<h1>复制服务端配置文件至openvpn的根目录</h1>
+<p>cp /usr/share/doc/openvpn-2.4.8/sample/sample-config-files/server.conf /etc/openvpn/</p>
+</blockquote>
 <h1>创建制作证书目录</h1>
 <p>mkdir /etc/openvpn/easy-rsa</p>
 <p>cd /etc/openvpn/</p>
@@ -245,17 +242,17 @@ sz /etc/openvpn/easy-rsa/pki/ca.crt
 sz /etc/openvpn/ta.key</p>
 
 <pre><code>
-3. 开启OpenVPN服务器的网卡转发功能</code></pre>
+&gt; 开启OpenVPN服务器的网卡转发功能</code></pre>
 <p>echo "net.ipv4.ip_forward = 1" &gt;&gt;/etc/sysctl.conf
 sysctl -p</p>
 
 <pre><code>
-4. 添加nat规则并生效</code></pre>
+&gt; 添加nat规则并生效</code></pre>
 <p>iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o enp0s31f6 -j MASQUERADE
 iptables-save</p>
 
 <pre><code>
-5. 客户端配置文件client.opvn</code></pre>
+&gt; 客户端配置文件client.opvn</code></pre>
 <p>client
 dev tun<br>
 proto tcp
@@ -273,13 +270,10 @@ cipher AES-256-CBC
 comp-lzo
 verb 3<br>
 ```</p>
-<ol>
-<li><p>将下载到本地的客户端证书和客户端配置文件拷贝至openvpn目录的config目录中</p>
-</li>
-<li><p>启动</p>
-</li>
-</ol>
-<h1>参考: <a href="https://segmentfault.com/a/1190000019502850">Centos7 安装openvpn by easy-rsa3.0</a> 操作整理</h1>
+<blockquote><p>将下载到本地的客户端证书和客户端配置文件拷贝至openvpn目录的config目录中</p>
+<p>启动</p>
+</blockquote>
+<h6>参考: <a href="https://segmentfault.com/a/1190000019502850">Centos7 安装openvpn by easy-rsa3.0</a> 操作整理</h6>
 
             </div>
         </article>
