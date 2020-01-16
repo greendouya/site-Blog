@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>https://blog.wooocloud.com/</id><title>稳妥国字脸</title><updated>2020-01-16T06:29:13.528217+08:06</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email></author><link href="https://blog.wooocloud.com/" rel="alternate"/><generator uri="http://lkiesow.github.io/python-feedgen" version="0.8.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</logo><subtitle>7.24也算个节日了么?</subtitle><entry><id>https://blog.wooocloud.com/archives/first-blog/</id><title>First Blog</title><updated>2020-01-16T06:29:13.528406+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;这是第一篇博客
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>https://blog.wooocloud.com/</id><title>稳妥国字脸</title><updated>2020-01-16T06:29:59.802865+08:06</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email></author><link href="https://blog.wooocloud.com/" rel="alternate"/><generator uri="http://lkiesow.github.io/python-feedgen" version="0.8.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</logo><subtitle>7.24也算个节日了么?</subtitle><entry><id>https://blog.wooocloud.com/archives/first-blog/</id><title>First Blog</title><updated>2020-01-16T06:29:59.803073+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;这是第一篇博客
 感谢&lt;code&gt;Maverick&lt;/code&gt; &amp;amp; &lt;code&gt;Galileo&lt;/code&gt;
 感谢&lt;a href="https://github.com/AlanDecode"&gt;AlanDecode&lt;/a&gt;&lt;/p&gt;
-</content><link href="https://blog.wooocloud.com/archives/first-blog/" rel="alternate"/><published>2020-01-16T09:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/vim-modify-save/</id><title>vim自动备份修改之前的文件</title><updated>2020-01-16T06:29:13.528367+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;vim ~/.vimrc&lt;/p&gt;
+</content><link href="https://blog.wooocloud.com/archives/first-blog/" rel="alternate"/><published>2020-01-16T09:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/vim-modify-save/</id><title>vim自动备份修改之前的文件</title><updated>2020-01-16T06:29:59.803033+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;vim ~/.vimrc&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;set backup
 function Bkdir()
@@ -16,7 +16,7 @@ endfunction
 au BufWrite * call Bkdir()
 autocmd BufWritePre * let &amp;amp;bex = '_'.strftime("%Y%m%d_%H_%M_%S")
 let &amp;amp;backupdir=expand("$HOME/.vim/backup").expand("%:p:h")&lt;/code&gt;&lt;/pre&gt;
-</content><link href="https://blog.wooocloud.com/archives/vim-modify-save/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/openvpn-in-centos7/</id><title>CentOS7部署openvpn</title><updated>2020-01-16T06:29:13.528294+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;ol&gt;
+</content><link href="https://blog.wooocloud.com/archives/vim-modify-save/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/openvpn-in-centos7/</id><title>CentOS7部署openvpn</title><updated>2020-01-16T06:29:59.802915+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;安装软件包&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;yum install -y epel-release
@@ -178,7 +178,7 @@ iptables-save&lt;/p&gt;
 &lt;p&gt;client
 dev tun&lt;br&gt;
 proto tcp
-remote 113.57.130.123 1194
+remote server端IP 1194
 resolv-retry infinite
 nobind
 persist-key

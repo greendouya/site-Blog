@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>稳妥国字脸</title><link>https://blog.wooocloud.com/</link><description>7.24也算个节日了么?</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</url><title>稳妥国字脸</title><link>https://blog.wooocloud.com/</link></image><language>zh-CN</language><lastBuildDate>Thu, 16 Jan 2020 06:29:13 +0806</lastBuildDate><pubDate>Thu, 16 Jan 2020 06:29:13 +0806</pubDate><item><title>First Blog</title><link>https://blog.wooocloud.com/archives/first-blog/</link><description>&lt;p&gt;这是第一篇博客
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>稳妥国字脸</title><link>https://blog.wooocloud.com/</link><description>7.24也算个节日了么?</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</url><title>稳妥国字脸</title><link>https://blog.wooocloud.com/</link></image><language>zh-CN</language><lastBuildDate>Thu, 16 Jan 2020 06:29:59 +0806</lastBuildDate><pubDate>Thu, 16 Jan 2020 06:29:59 +0806</pubDate><item><title>First Blog</title><link>https://blog.wooocloud.com/archives/first-blog/</link><description>&lt;p&gt;这是第一篇博客
 感谢&lt;code&gt;Maverick&lt;/code&gt; &amp;amp; &lt;code&gt;Galileo&lt;/code&gt;
 感谢&lt;a href="https://github.com/AlanDecode"&gt;AlanDecode&lt;/a&gt;&lt;/p&gt;
 </description><author>gotspinach@foxmail.com (Dragon)</author><guid isPermaLink="true">https://blog.wooocloud.com/archives/first-blog/</guid><pubDate>Thu, 16 Jan 2020 09:00:00 +0806</pubDate></item><item><title>vim自动备份修改之前的文件</title><link>https://blog.wooocloud.com/archives/vim-modify-save/</link><description>&lt;p&gt;vim ~/.vimrc&lt;/p&gt;
@@ -178,7 +178,7 @@ iptables-save&lt;/p&gt;
 &lt;p&gt;client
 dev tun&lt;br&gt;
 proto tcp
-remote 113.57.130.123 1194
+remote server端IP 1194
 resolv-retry infinite
 nobind
 persist-key
