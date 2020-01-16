@@ -52,8 +52,7 @@ your newly created PKI dir is: /etc/openvpn/easy-rsa/pki
 ./easyrsa build-ca
 Note: using Easy-RSA configuration from: ./vars                                  #使用vars文件里面配置的信息
 Generating a 2048 bit RSA private key
-.................+++
-........................................................................................+++
+
 writing new private key to '/etc/openvpn/easy-rsa/pki/private/ca.key.Lg8IKADc4Q'
 Enter PEM pass phrase:                                                                      # 设置ca密码
 Verifying - Enter PEM pass phrase:                                                     # 重新输入上面的密码
@@ -74,8 +73,7 @@ Your new CA certificate file for publishing is at:
 ./easyrsa gen-req opserver nopass
 Note: using Easy-RSA configuration from: ./vars                             #使用vars文件里面配置的信息
 Generating a 2048 bit RSA private key
-.....................................+++
-................................................................................................+++
+
 writing new private key to '/etc/openvpn/easy-rsa/pki/private/opserver.key.yuG9HRsSlU'
 -----
 You are about to be asked to enter information that will be incorporated
@@ -120,7 +118,7 @@ Certificate created at: /etc/openvpn/easy-rsa/pki/issued/opserver.crt          #
 Note: using Easy-RSA configuration from: ./vars
 Generating DH parameters, 2048 bit long safe prime, generator 2
 This is going to take a long time
-............................................................+...........................................................+.......................................................................................................+...........+..........................................................................................................................................................................................................................................................................+..........................................
+
 DH parameters of size 2048 created at /etc/openvpn/pki/dh.pem                 #dh证书路径
 
 cd /etc/openvpn
