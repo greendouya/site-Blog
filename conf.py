@@ -33,9 +33,9 @@ key_words = ['Linux', 'Docker', 'ELK', '运维']
 language = 'zh-CN'
 external_links = [
     {
-        "name": "Maverick",
-        "url": "https://github.com/AlanDecode/Maverick",
-        "brief": "🏄‍ Go My Own Way."
+        "name": "成人交友",
+        "url": "https://github.com/greendouya",
+        "brief": "Go?go...Go!"
     }
 ]
 nav = [
