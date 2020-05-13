@@ -1,0 +1,529 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Linux,Docker,ELK,运维" />
+    <meta name="generator" content="Maverick 1.1" />
+    <meta name="template" content="Kepler" />
+    <link rel="alternate" type="application/rss+xml" title="稳妥国字脸 &raquo; RSS 2.0" href="https://blog.wooocloud.com/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="稳妥国字脸 &raquo; ATOM 1.0" href="https://blog.wooocloud.com/feed/atom/index.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/assets/kepler-426969802d.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.10.0/dist/tocbot.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/48fa67765dd3e1d00d1185b623e3f62f.json"
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            if(/Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)){
+                document.body.classList.add('safari')
+            }else{
+                document.body.classList.remove('safari')
+            }
+        });
+    </script>
+    
+<title>psutil - 稳妥国字脸</title>
+<meta name="author" content="Dragon" />
+<meta name="description" content="Mark" />
+<meta property="og:title" content="psutil - 稳妥国字脸" />
+<meta property="og:description" content="Mark" />
+<meta property="og:site_name" content="稳妥国字脸" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.wooocloud.com/archives/psutil/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2020-05-13T12:00:00-00.00" />
+<meta name="twitter:title" content="psutil - 稳妥国字脸" />
+<meta name="twitter:description" content="Mark" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="dns-prefetch" href="//blog.imalan.cn" />
+<!--
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/brand_font/embed.css" />
+<style>.brand{font-family:FZCuJinLFW,serif;font-weight: normal!important;}</style>
+-->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/apple-touch-icon.png?v=PY43YeeEKx">
+<link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/favicon-32x32.png?v=yyLyaqbyRG">
+<link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/favicon-16x16.png?v=yyLyaqbyRG">
+<link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/safari-pinned-tab.svg?v=yyLyaqbyRG" color="#505050">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/favicon.ico?v=yyLyaqbyRG">
+<meta name="application-name" content="稳妥国字脸">
+<meta name="apple-mobile-web-app-title" content="稳妥国字脸">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="theme-color" content="#000000">
+<meta name="baidu-site-verification" content="9BEwwo6Ibg" />
+
+    </head>
+    
+    <body class="content">
+        <header>
+            <div class="container">
+                <section>
+                    <a href="https://blog.wooocloud.com/"><img src="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png">稳妥国字脸</a>
+                </section>
+                <section>
+                    <nav>
+                        <ul>
+                            
+                                <li><a href="https://github.com/greendouya" target="_blank">成人交友</a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+    
+                <section>
+                    <a hidden class="toggle-toc" target="_self" href="javascript:void(0)" onclick="$(body).toggleClass('toc-open')"><i class="fa fa-align-right"></i></a>
+                    <a hidden class="toggle-navbar" target="_self" href="javascript:void(0)" onclick="$(body).toggleClass('navbar-open')"><i class="fa fa-indent"></i></a>
+                    <button class="search-form-input"><i class="fa fa-search"></i></button>
+                </section>
+            </div>
+        </header>
+
+        <main>
+            <div id="pjax-container" class="container">
+                <aside id="navbar" class="no-scrollbar">
+                    
+                    <section class="sidebar-nav">
+                        
+                            <div class="None" ><span><a href="https://blog.wooocloud.com/">首页</a></span></div>
+                        
+                            <div class="None" ><span><a href="https://blog.wooocloud.com/archives/">归档</a></span></div>
+                        
+                            <div class="None" ><span><a href="https://blog.wooocloud.com/about/">关于</a></span></div>
+                        
+                    </section>
+                    
+                    <section>
+                        
+    <div class="open "><span><a href="https://blog.wooocloud.com/category/Python/">Python</a><button class="toggle_sidebar fa"></button></span><ul><li class="current"><a href="https://blog.wooocloud.com/archives/psutil/">psutil</a></li></ul></div><div class=" "><span><a href="https://blog.wooocloud.com/category/Linux/">Linux</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="https://blog.wooocloud.com/archives/openvpn-in-centos7/">CentOS7部署openvpn</a></li><li class=""><a href="https://blog.wooocloud.com/archives/vim-modify-save/">vim自动备份修改之前的文件</a></li></ul></div><div class=" "><span><a href="https://blog.wooocloud.com/category/Github/">Github</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="https://blog.wooocloud.com/archives/first-blog/">First Blog</a></li></ul></div>
+
+                    </section>
+                    <section hidden class="sidebar-external-link">
+                        
+                            <div class="external"><span><a href="https://github.com/greendouya">成人交友</a><button class="go-external"><i class="fa fa-external-link"></i></button></span></div>
+                        
+                    </section>
+                    <section class="maverick">
+                        <div><span style="border: 1px solid #d4dadf;"><a href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Kepler</a></span></div>
+                    </section>
+                </aside>
+                <div id="content-wrapper">
+                    <div id="content">
+    <section>
+        <h1 class="post-title">psutil</h1>
+        <p class="post-meta">
+            <time>May 13 2020</time>
+            <span class="tags">
+                
+                <span>
+                    <a href="https://blog.wooocloud.com/tag/Python/">#Python</a>
+                </span>
+                
+                <span>
+                    <a href="https://blog.wooocloud.com/tag/psutil/">#psutil</a>
+                </span>
+                
+            </span>
+        </p>
+        <article class="yue"><blockquote><h1>psutil</h1>
+</blockquote>
+<h3>CPU相关</h3>
+<table>
+<thead><tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>psutil.cpu_count()</td>
+<td>cpu_count(,[logical]):默认返回逻辑CPU的个数,当设置logical的参数为False时，返回物理CPU的个数</td>
+</tr>
+<tr>
+<td>psutil.cpu_percent()</td>
+<td>cpu_percent(,[percpu],[interval])：返回CPU的利用率,percpu为True时显示所有物理核心的利用率,interval不为0时,则阻塞时显示interval执行的时间内的平均利用率</td>
+</tr>
+<tr>
+<td>psutil.cpu_times()</td>
+<td>cpu_times(,[percpu])：以命名元组(namedtuple)的形式返回cpu的时间花费,percpu=True表示获取每个CPU的时间花费</td>
+</tr>
+<tr>
+<td>psutil.cpu_times_percent()</td>
+<td>cpu_times_percent(,[percpu])：功能和cpu_times大致相同，看字面意思就能知道，该函数返回的是耗时比例</td>
+</tr>
+<tr>
+<td>psutil.cpu_stats()</td>
+<td>cpu_stats()以命名元组的形式返回CPU的统计信息，包括上下文切换，中断，软中断和系统调用次数</td>
+</tr>
+<tr>
+<td>psutil.cpu_freq()</td>
+<td>cpu_freq([percpu])：返回cpu频率</td>
+</tr>
+</tbody>
+</table>
+<p>示例</p>
+<div class="highlight"><pre><span></span><span class="c1"># 查看cpu个数</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">psutil</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(</span><span class="n">logical</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> 
+<span class="c1"># 查看cpu利用率</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">()</span>
+<span class="mf">0.2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">(</span><span class="n">percpu</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> 
+<span class="c1"># 查看cpu时间花费</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_times</span><span class="p">()</span>
+<span class="n">scputimes</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="mf">29.09</span><span class="p">,</span> <span class="n">nice</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="mf">22.62</span><span class="p">,</span> <span class="n">idle</span><span class="o">=</span><span class="mf">24434.77</span><span class="p">,</span> <span class="n">iowait</span><span class="o">=</span><span class="mf">1.74</span><span class="p">,</span> <span class="n">irq</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">softirq</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span> <span class="n">steal</span><span class="o">=</span><span class="mf">0.27</span><span class="p">,</span> <span class="n">guest</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">guest_nice</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_times</span><span class="p">(</span><span class="n">percpu</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">[</span><span class="n">scputimes</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="mf">13.64</span><span class="p">,</span> <span class="n">nice</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="mf">12.02</span><span class="p">,</span> <span class="n">idle</span><span class="o">=</span><span class="mf">12235.5</span><span class="p">,</span> <span class="n">iowait</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">irq</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">softirq</span><span class="o">=</span><span class="mf">0.16</span><span class="p">,</span> <span class="n">steal</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">guest</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">guest_nice</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span> 
+<span class="n">scputimes</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="mf">15.47</span><span class="p">,</span> <span class="n">nice</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="mf">10.62</span><span class="p">,</span> <span class="n">idle</span><span class="o">=</span><span class="mf">12229.44</span><span class="p">,</span> <span class="n">iowait</span><span class="o">=</span><span class="mf">0.74</span><span class="p">,</span> <span class="n">irq</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">softirq</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">steal</span><span class="o">=</span><span class="mf">0.17</span><span class="p">,</span> <span class="n">guest</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">guest_nice</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">cpu_time</span><span class="p">)</span>
+<span class="n">scputimes</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="mf">29.24</span><span class="p">,</span> <span class="n">nice</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="mf">22.76</span><span class="p">,</span> <span class="n">idle</span><span class="o">=</span><span class="mf">24618.94</span><span class="p">,</span> <span class="n">iowait</span><span class="o">=</span><span class="mf">1.74</span><span class="p">,</span> <span class="n">irq</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">softirq</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span> <span class="n">steal</span><span class="o">=</span><span class="mf">0.27</span><span class="p">,</span> <span class="n">guest</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">guest_nice</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">cpu_time</span><span class="o">.</span><span class="n">user</span>
+<span class="mf">29.24</span>
+</pre></div>
+<h3>Memory内存相关</h3>
+<p><code>virtual_memory()</code>：以命名元组的形式返回内存使用情况，包括总内存，可用内存，内存利用率，buffer和cache等。单位为字节。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">psutil</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span>
+<span class="n">svmem</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="mi">8071716864</span><span class="p">,</span> <span class="n">available</span><span class="o">=</span><span class="mi">6532554752</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="mf">19.1</span><span class="p">,</span> <span class="n">used</span><span class="o">=</span><span class="mi">1258717184</span><span class="p">,</span> <span class="n">free</span><span class="o">=</span><span class="mi">6526308352</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="mi">1153519616</span><span class="p">,</span> <span class="n">inactive</span><span class="o">=</span><span class="mi">194592768</span><span class="p">,</span> <span class="n">buffers</span><span class="o">=</span><span class="mi">2129920</span><span class="p">,</span> <span class="n">cached</span><span class="o">=</span><span class="mi">284561408</span><span class="p">,</span> <span class="n">shared</span><span class="o">=</span><span class="mi">9011200</span><span class="p">,</span> <span class="n">slab</span><span class="o">=</span><span class="mi">39006208</span><span class="p">)</span>
+</pre></div>
+<p><code>swap_memory()</code>：以命名元组的形式返回swap/memory使用情况，包含swap中页的换入和换出。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">psutil</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">swap_memory</span><span class="p">()</span>
+<span class="n">sswap</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="mi">17179865088</span><span class="p">,</span> <span class="n">used</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">free</span><span class="o">=</span><span class="mi">17179865088</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+<h3>单位转换</h3>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psutil</span>
+<span class="k">def</span> <span class="nf">bytes2human</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+     <span class="n">symbols</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;K&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;G&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">,</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+     <span class="n">prefix</span> <span class="o">=</span> <span class="p">{}</span>
+     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">symbols</span><span class="p">):</span>
+         <span class="n">prefix</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+     <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">symbols</span><span class="p">):</span>
+         <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="n">prefix</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
+             <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">prefix</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+             <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%.1f%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+     <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">B&#39;</span> <span class="o">%</span> <span class="n">n</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bytes2human</span><span class="p">(</span><span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">total</span><span class="p">))</span>
+</pre></div>
+<h3>Disk相关</h3>
+<table>
+<thead><tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>psutil.disk_io_counters()</td>
+<td>disk_io_counters([perdisk])：以命名元组的形式返回磁盘io统计信息(汇总的)，包括读、写的次数，读、写的字节数等。当perdisk的值为True，则分别列出单个磁盘的统计信息(字典：key为磁盘名称，value为统计的namedtuple)。</td>
+</tr>
+<tr>
+<td>psutil.disk_partitions()</td>
+<td>disk_partitions([all=False])：以命名元组的形式返回所有已挂载的磁盘，包含磁盘名称，挂载点，文件系统类型等信息。当all等于True时，返回包含/proc等特殊文件系统的挂载信息</td>
+</tr>
+<tr>
+<td>psutil.disk_usage()</td>
+<td>disk_usage(path)：以命名元组的形式返回path所在磁盘的使用情况，包括磁盘的容量、已经使用的磁盘容量、磁盘的空间利用率等。</td>
+</tr>
+</tbody>
+</table>
+<p>示例</p>
+<div class="highlight"><pre><span></span><span class="c1"># 查看所有已挂载的磁盘</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">disk_partitions</span><span class="p">()</span>
+<span class="p">[</span><span class="n">sdiskpart</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="s1">&#39;/dev/vda3&#39;</span><span class="p">,</span> <span class="n">mountpoint</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">fstype</span><span class="o">=</span><span class="s1">&#39;xfs&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="s1">&#39;rw,relatime,attr2,inode64,noquota&#39;</span><span class="p">),</span> <span class="n">sdiskpart</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="s1">&#39;/dev/vda6&#39;</span><span class="p">,</span> <span class="n">mountpoint</span><span class="o">=</span><span class="s1">&#39;/data1&#39;</span><span class="p">,</span> <span class="n">fstype</span><span class="o">=</span><span class="s1">&#39;xfs&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="s1">&#39;rw,relatime,attr2,inode64,noquota&#39;</span><span class="p">),</span> <span class="n">sdiskpart</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="s1">&#39;/dev/vda2&#39;</span><span class="p">,</span> <span class="n">mountpoint</span><span class="o">=</span><span class="s1">&#39;/boot&#39;</span><span class="p">,</span> <span class="n">fstype</span><span class="o">=</span><span class="s1">&#39;xfs&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="s1">&#39;rw,relatime,attr2,inode64,noquota&#39;</span><span class="p">)]</span>
+<span class="c1"># 使用列表表达式查询指定挂载点信息</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">device</span> <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">psutil</span><span class="o">.</span><span class="n">disk_partitions</span><span class="p">()</span> <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">mountpoint</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="n">sdiskpart</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="s1">&#39;/dev/vda3&#39;</span><span class="p">,</span> <span class="n">mountpoint</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">fstype</span><span class="o">=</span><span class="s1">&#39;xfs&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="s1">&#39;rw,relatime,attr2,inode64,noquota&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> 
+<span class="c1"># 查看磁盘使用情况</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">disk_usage</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="n">sdiskusage</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="mi">85857402880</span><span class="p">,</span> <span class="n">used</span><span class="o">=</span><span class="mi">3858100224</span><span class="p">,</span> <span class="n">free</span><span class="o">=</span><span class="mi">81999302656</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="mf">4.5</span><span class="p">)</span>
+<span class="c1"># 查看磁盘io统计汇总</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">disk_io_counters</span><span class="p">()</span>
+<span class="n">sdiskio</span><span class="p">(</span><span class="n">read_count</span><span class="o">=</span><span class="mi">6828</span><span class="p">,</span> <span class="n">write_count</span><span class="o">=</span><span class="mi">3878</span><span class="p">,</span> <span class="n">read_bytes</span><span class="o">=</span><span class="mi">273637888</span><span class="p">,</span> <span class="n">write_bytes</span><span class="o">=</span><span class="mi">30182912</span><span class="p">,</span> <span class="n">read_time</span><span class="o">=</span><span class="mi">6870</span><span class="p">,</span> <span class="n">write_time</span><span class="o">=</span><span class="mi">2079</span><span class="p">,</span> <span class="n">read_merged_count</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">write_merged_count</span><span class="o">=</span><span class="mi">126</span><span class="p">,</span> <span class="n">busy_time</span><span class="o">=</span><span class="mi">4841</span><span class="p">)</span>
+<span class="c1"># 分别列出单个磁盘的统计信息</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">disk_io_counters</span><span class="p">(</span><span class="n">perdisk</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">{</span><span class="s1">&#39;vda&#39;</span><span class="p">:</span> <span class="n">sdiskio</span><span class="p">(</span><span class="n">read_count</span><span class="o">=</span><span class="mi">6828</span><span class="p">,</span> <span class="n">write_count</span><span class="o">=</span><span class="mi">3878</span><span class="p">,</span> <span class="n">read_bytes</span><span class="o">=</span><span class="mi">273637888</span><span class="p">,</span> <span class="n">write_bytes</span><span class="o">=</span><span class="mi">30182912</span><span class="p">,</span> <span class="n">read_time</span><span class="o">=</span><span class="mi">6870</span><span class="p">,</span> <span class="n">write_time</span><span class="o">=</span><span class="mi">2079</span><span class="p">,</span> <span class="n">read_merged_count</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">write_merged_count</span><span class="o">=</span><span class="mi">126</span><span class="p">,</span> <span class="n">busy_time</span><span class="o">=</span><span class="mi">4841</span><span class="p">),</span> <span class="s1">&#39;vda1&#39;</span><span class="p">:</span> <span class="n">sdiskio</span><span class="p">(</span><span class="n">read_count</span><span class="o">=</span><span class="mi">34</span><span class="p">,</span> <span class="n">write_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_bytes</span><span class="o">=</span><span class="mi">139264</span><span class="p">,</span> <span class="n">write_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_time</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">write_time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_merged_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">write_merged_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">busy_time</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;vda2&#39;</span><span class="p">:</span> <span class="n">sdiskio</span><span class="p">(</span><span class="n">read_count</span><span class="o">=</span><span class="mi">1934</span><span class="p">,</span> <span class="n">write_count</span><span class="o">=</span><span class="mi">2049</span><span class="p">,</span> <span class="n">read_bytes</span><span class="o">=</span><span class="mi">22754816</span><span class="p">,</span> <span class="n">write_bytes</span><span class="o">=</span><span class="mi">2097152</span><span class="p">,</span> <span class="n">read_time</span><span class="o">=</span><span class="mi">570</span><span class="p">,</span> <span class="n">write_time</span><span class="o">=</span><span class="mi">801</span><span class="p">,</span> <span class="n">read_merged_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">write_merged_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">busy_time</span><span class="o">=</span><span class="mi">1347</span><span class="p">),</span> <span class="s1">&#39;vda3&#39;</span><span class="p">:</span> <span class="n">sdiskio</span><span class="p">(</span><span class="n">read_count</span><span class="o">=</span><span class="mi">4009</span><span class="p">,</span> <span class="n">write_count</span><span class="o">=</span><span class="mi">1729</span><span class="p">,</span> <span class="n">read_bytes</span><span class="o">=</span><span class="mi">187268608</span><span class="p">,</span> <span class="n">write_bytes</span><span class="o">=</span><span class="mi">12412416</span><span class="p">,</span> <span class="n">read_time</span><span class="o">=</span><span class="mi">5302</span><span class="p">,</span> <span class="n">write_time</span><span class="o">=</span><span class="mi">911</span><span class="p">,</span> <span class="n">read_merged_count</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">write_merged_count</span><span class="o">=</span><span class="mi">115</span><span class="p">,</span> <span class="n">busy_time</span><span class="o">=</span><span class="mi">3114</span><span class="p">),</span> <span class="s1">&#39;vda4&#39;</span><span class="p">:</span> <span class="n">sdiskio</span><span class="p">(</span><span class="n">read_count</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">write_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_bytes</span><span class="o">=</span><span class="mi">18432</span><span class="p">,</span> <span class="n">write_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_time</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">write_time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_merged_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">write_merged_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">busy_time</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;vda5&#39;</span><span class="p">:</span> <span class="n">sdiskio</span><span class="p">(</span><span class="n">read_count</span><span class="o">=</span><span class="mi">48</span><span class="p">,</span> <span class="n">write_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_bytes</span><span class="o">=</span><span class="mi">2248704</span><span class="p">,</span> <span class="n">write_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_time</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">write_time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_merged_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">write_merged_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">busy_time</span><span class="o">=</span><span class="mi">9</span><span class="p">),</span> <span class="s1">&#39;vda6&#39;</span><span class="p">:</span> <span class="n">sdiskio</span><span class="p">(</span><span class="n">read_count</span><span class="o">=</span><span class="mi">763</span><span class="p">,</span> <span class="n">write_count</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">read_bytes</span><span class="o">=</span><span class="mi">60118528</span><span class="p">,</span> <span class="n">write_bytes</span><span class="o">=</span><span class="mi">15673344</span><span class="p">,</span> <span class="n">read_time</span><span class="o">=</span><span class="mi">948</span><span class="p">,</span> <span class="n">write_time</span><span class="o">=</span><span class="mi">367</span><span class="p">,</span> <span class="n">read_merged_count</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">write_merged_count</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">busy_time</span><span class="o">=</span><span class="mi">459</span><span class="p">),</span> <span class="s1">&#39;sr0&#39;</span><span class="p">:</span> <span class="n">sdiskio</span><span class="p">(</span><span class="n">read_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">write_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">write_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">write_time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">read_merged_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">write_merged_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">busy_time</span><span class="o">=</span><span class="mi">0</span><span class="p">)}</span>
+</pre></div>
+<h3>Network相关</h3>
+<table>
+<thead><tr>
+<th>函数</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>psutil.net_io_counter([pernic])</td>
+<td>以命名元组的形式返回当前系统中每块网卡的网络io统计信息，包括收发字节数，收发包的数量、出错的情况和删包情况。当pernic为True时，则列出所有网卡的统计信息。</td>
+</tr>
+<tr>
+<td>psutil.net_connections([kind])</td>
+<td>以列表的形式返回每个网络连接的详细信息(namedtuple)。命名元组包含fd, family, type, laddr, raddr, status, pid等信息。kind表示过滤的连接类型，支持的值如下：(默认为inet)</td>
+</tr>
+<tr>
+<td>psutil.net_if_addrs()</td>
+<td>以字典的形式返回网卡的配置信息，包括IP地址和mac地址、子网掩码和广播地址。</td>
+</tr>
+<tr>
+<td>psutil.net_if_stats()</td>
+<td>返回网卡的详细信息，包括是否启动、通信类型、传输速度与mtu。</td>
+</tr>
+<tr>
+<td>psutil.users()</td>
+<td>以命名元组的方式返回当前登陆用户的信息，包括用户名，登陆时间，终端，与主机信息</td>
+</tr>
+<tr>
+<td>psutil.boot_time()</td>
+<td>以时间戳的形式返回系统的启动时间</td>
+</tr>
+</tbody>
+</table>
+<p>示例</p>
+<div class="highlight"><pre><span></span><span class="c1"># 查看网卡信息统计</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_io_counters</span><span class="p">()</span>
+<span class="n">snetio</span><span class="p">(</span><span class="n">bytes_sent</span><span class="o">=</span><span class="mi">9699431</span><span class="p">,</span> <span class="n">bytes_recv</span><span class="o">=</span><span class="mi">1895536</span><span class="p">,</span> <span class="n">packets_sent</span><span class="o">=</span><span class="mi">8606</span><span class="p">,</span> <span class="n">packets_recv</span><span class="o">=</span><span class="mi">27354</span><span class="p">,</span> <span class="n">errin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">errout</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dropin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># 查看网卡配置信息</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_if_addrs</span><span class="p">()</span>
+<span class="p">{</span><span class="s1">&#39;lo&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">snicaddr</span><span class="p">(</span><span class="n">family</span><span class="o">=&lt;</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="s1">&#39;255.0.0.0&#39;</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ptp</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span> <span class="n">snicaddr</span><span class="p">(</span><span class="n">family</span><span class="o">=&lt;</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">AF_INET6</span><span class="p">:</span> <span class="mi">10</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;::1&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="s1">&#39;ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff&#39;</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ptp</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span> <span class="n">snicaddr</span><span class="p">(</span><span class="n">family</span><span class="o">=&lt;</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">AF_PACKET</span><span class="p">:</span> <span class="mi">17</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;00:00:00:00:00:00&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ptp</span><span class="o">=</span><span class="kc">None</span><span class="p">)],</span> <span class="s1">&#39;eth0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">snicaddr</span><span class="p">(</span><span class="n">family</span><span class="o">=&lt;</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;172.16.5.12&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="s1">&#39;255.255.255.0&#39;</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="s1">&#39;172.16.5.255&#39;</span><span class="p">,</span> <span class="n">ptp</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span> <span class="n">snicaddr</span><span class="p">(</span><span class="n">family</span><span class="o">=&lt;</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">AF_INET6</span><span class="p">:</span> <span class="mi">10</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;fe80::9700:20da:ed33:9f50</span><span class="si">%e</span><span class="s1">th0&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="s1">&#39;ffff:ffff:ffff:ffff::&#39;</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ptp</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span> <span class="n">snicaddr</span><span class="p">(</span><span class="n">family</span><span class="o">=&lt;</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">AF_PACKET</span><span class="p">:</span> <span class="mi">17</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;52:54:00:3d:ea:06&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="s1">&#39;ff:ff:ff:ff:ff:ff&#39;</span><span class="p">,</span> <span class="n">ptp</span><span class="o">=</span><span class="kc">None</span><span class="p">)]}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_if_addrs</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="n">snicaddr</span><span class="p">(</span><span class="n">family</span><span class="o">=&lt;</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;172.16.5.12&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="s1">&#39;255.255.255.0&#39;</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="s1">&#39;172.16.5.255&#39;</span><span class="p">,</span> <span class="n">ptp</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span> <span class="n">snicaddr</span><span class="p">(</span><span class="n">family</span><span class="o">=&lt;</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">AF_INET6</span><span class="p">:</span> <span class="mi">10</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;fe80::9700:20da:ed33:9f50</span><span class="si">%e</span><span class="s1">th0&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="s1">&#39;ffff:ffff:ffff:ffff::&#39;</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ptp</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span> <span class="n">snicaddr</span><span class="p">(</span><span class="n">family</span><span class="o">=&lt;</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">AF_PACKET</span><span class="p">:</span> <span class="mi">17</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;52:54:00:3d:ea:06&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="s1">&#39;ff:ff:ff:ff:ff:ff&#39;</span><span class="p">,</span> <span class="n">ptp</span><span class="o">=</span><span class="kc">None</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">snicaddr</span><span class="p">(</span><span class="n">family</span><span class="o">=&lt;</span><span class="n">AddressFamily</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;172.16.5.12&#39;</span><span class="p">,</span> <span class="n">netmask</span><span class="o">=</span><span class="s1">&#39;255.255.255.0&#39;</span><span class="p">,</span> <span class="n">broadcast</span><span class="o">=</span><span class="s1">&#39;172.16.5.255&#39;</span><span class="p">,</span> <span class="n">ptp</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="s1">&#39;172.16.5.12&#39;</span>
+<span class="c1"># 查看当前登录用户信息</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">users</span><span class="p">()</span>
+<span class="p">[</span><span class="n">suser</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;pts/0&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;172.16.2.66&#39;</span><span class="p">,</span> <span class="n">started</span><span class="o">=</span><span class="mf">1574151552.0</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="mi">1437</span><span class="p">),</span> <span class="n">suser</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">terminal</span><span class="o">=</span><span class="s1">&#39;pts/1&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;172.16.2.66&#39;</span><span class="p">,</span> <span class="n">started</span><span class="o">=</span><span class="mf">1574161536.0</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="mi">1699</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+<h3>进程管理</h3>
+<table>
+<thead><tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>psutil.pids()</td>
+<td>以列表的形式返回当前正在运行的进程</td>
+</tr>
+<tr>
+<td>psutil.pid_exists(1)</td>
+<td>判断给点定的pid是否存在</td>
+</tr>
+<tr>
+<td>psutil.process_iter()</td>
+<td>迭代当前正在运行的进程，返回的是每个进程的Process对象</td>
+</tr>
+<tr>
+<td>psutil.Process()</td>
+<td>对进程进行封装，可以使用该类的方法获取进行的详细信息，或者给进程发送信号。</td>
+</tr>
+</tbody>
+</table>
+<p>进程相关信息的方法：</p>
+
+<pre><code>name：获取进程的名称
+cmdline：获取启动进程的命令行参数
+create_time：获取进程的创建时间(时间戳格式)
+num_fds：进程打开的文件个数
+num_threads：进程的子进程个数
+is_running：判断进程是否正在运行
+send_signal：给进程发送信号，类似与os.kill等
+kill：发送SIGKILL信号结束进程
+terminate：发送SIGTEAM信号结束进程
+
+</code></pre>
+<p>示例</p>
+<div class="highlight"><pre><span></span><span class="c1"># 以列表形式查看正在运行的进程</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">pids</span><span class="p">()</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">236</span><span class="p">,</span> <span class="mi">237</span><span class="p">,</span> <span class="mi">238</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">244</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">260</span><span class="p">,</span> <span class="mi">266</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">268</span><span class="p">,</span> <span class="mi">269</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">271</span><span class="p">,</span> <span class="mi">272</span><span class="p">,</span> <span class="mi">273</span><span class="p">,</span> <span class="mi">274</span><span class="p">,</span> <span class="mi">275</span><span class="p">,</span> <span class="mi">276</span><span class="p">,</span> <span class="mi">346</span><span class="p">,</span> <span class="mi">374</span><span class="p">,</span> <span class="mi">377</span><span class="p">,</span> <span class="mi">378</span><span class="p">,</span> <span class="mi">497</span><span class="p">,</span> <span class="mi">498</span><span class="p">,</span> <span class="mi">499</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">501</span><span class="p">,</span> <span class="mi">502</span><span class="p">,</span> <span class="mi">503</span><span class="p">,</span> <span class="mi">506</span><span class="p">,</span> <span class="mi">508</span><span class="p">,</span> <span class="mi">509</span><span class="p">,</span> <span class="mi">510</span><span class="p">,</span> <span class="mi">511</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">513</span><span class="p">,</span> <span class="mi">514</span><span class="p">,</span> <span class="mi">515</span><span class="p">,</span> <span class="mi">612</span><span class="p">,</span> <span class="mi">616</span><span class="p">,</span> <span class="mi">636</span><span class="p">,</span> <span class="mi">638</span><span class="p">,</span> <span class="mi">639</span><span class="p">,</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">641</span><span class="p">,</span> <span class="mi">643</span><span class="p">,</span> <span class="mi">646</span><span class="p">,</span> <span class="mi">647</span><span class="p">,</span> <span class="mi">655</span><span class="p">,</span> <span class="mi">658</span><span class="p">,</span> <span class="mi">661</span><span class="p">,</span> <span class="mi">677</span><span class="p">,</span> <span class="mi">688</span><span class="p">,</span> <span class="mi">689</span><span class="p">,</span> <span class="mi">901</span><span class="p">,</span> <span class="mi">902</span><span class="p">,</span> <span class="mi">903</span><span class="p">,</span> <span class="mi">912</span><span class="p">,</span> <span class="mi">925</span><span class="p">,</span> <span class="mi">949</span><span class="p">,</span> <span class="mi">977</span><span class="p">,</span> <span class="mi">981</span><span class="p">,</span> <span class="mi">992</span><span class="p">,</span> <span class="mi">994</span><span class="p">,</span> <span class="mi">995</span><span class="p">,</span> <span class="mi">997</span><span class="p">,</span> <span class="mi">1001</span><span class="p">,</span> <span class="mi">1002</span><span class="p">,</span> <span class="mi">1003</span><span class="p">,</span> <span class="mi">1004</span><span class="p">,</span> <span class="mi">1255</span><span class="p">,</span> <span class="mi">1536</span><span class="p">,</span> <span class="mi">1840</span><span class="p">,</span> <span class="mi">1842</span><span class="p">,</span> <span class="mi">1844</span><span class="p">,</span> <span class="mi">1861</span><span class="p">,</span> <span class="mi">1862</span><span class="p">,</span> <span class="mi">1863</span><span class="p">,</span> <span class="mi">1864</span><span class="p">]</span>
+<span class="c1"># 查看进程运行状态，以布尔形式显示</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">psutil</span><span class="o">.</span><span class="n">pid_exists</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="kc">True</span>
+<span class="c1"># 迭代当前正在运行进程，查看列表中前三个实例的信息</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">psutil</span><span class="o">.</span><span class="n">process_iter</span><span class="p">())[:</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;systemd&#39;</span><span class="p">,</span> <span class="n">started</span><span class="o">=</span><span class="s1">&#39;16:19:47&#39;</span><span class="p">),</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;kthreadd&#39;</span><span class="p">,</span> <span class="n">started</span><span class="o">=</span><span class="s1">&#39;16:19:47&#39;</span><span class="p">),</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;ksoftirqd/0&#39;</span><span class="p">,</span> <span class="n">started</span><span class="o">=</span><span class="s1">&#39;16:19:47&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> 
+<span class="c1"># 通过进程号实例化对象</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">process</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+<span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">pid</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;systemd&#39;</span><span class="p">,</span> <span class="n">started</span><span class="o">=</span><span class="s1">&#39;16:19:47&#39;</span><span class="p">)</span>
+<span class="c1"># 获取进程的名称</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">process</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
+<span class="s1">&#39;systemd&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">process</span><span class="o">.</span><span class="n">create_time</span><span class="p">()</span>
+<span class="mf">1574151587.05</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">process</span><span class="o">.</span><span class="n">num_fds</span><span class="p">()</span>
+<span class="mi">47</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">process</span><span class="o">.</span><span class="n">num_threads</span><span class="p">()</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+<p>```</p>
+</article>
+    </section>
+
+    
+    <section id="content-pager">
+        
+        
+            <div class="prev">
+                <a class="card" href="https://blog.wooocloud.com/archives/openvpn-in-centos7/">
+                    <time>January 16 2020</time>
+                    <span>CentOS7部署openvpn</span>
+                </a>
+            </div>
+        
+    </section>
+    
+
+    
+
+    <script>
+        document.body.classList.add('content');
+        document.body.classList.remove('archive');
+    </script>
+</div>
+                    <footer>
+                        <span>Copyright © 2020 Dragon</span>
+                        
+    
+
+                        <span class="addon">
+<a no-style href="http://beian.miit.gov.cn" target="_blank"></a>
+</span>
+                    </footer>
+                </div>
+                
+<aside id="toc-container" class="no-scrollbar">
+    <span><i class="fa fa-align-right"></i> CONTENTS</span>
+    <div id="toc"></div>
+</aside>
+
+            </div>
+        </main>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tocbot@4.10.0/dist/tocbot.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/assets/kepler-ef161b04d5.js"></script>
+        <script>
+            function ExSearchCall(item){
+                if (item && item.length) {
+                    $('.ins-close').click(); // 关闭搜索框
+                    $('input.ins-search-input').val(''); // 清空
+                    let url = item.attr('data-url'); // 获取目标页面 URL
+                    $.pjax({url: url, 
+                        container: '#pjax-container',
+                        fragment: '#pjax-container',
+                        timeout: 8000, }); // 发起一次 PJAX 请求
+                }
+            }
+        </script>
+
+        <!--Valine-->
+        
+
+        <!--ExSearch-->
+        <script src="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+        
+        <!--katex-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/assets/katex.min.css">
+        <script defer src="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/assets/katex.min.js"></script>
+        <script>
+        mathOpts = {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "\\[", right: "\\]", display: true},
+                {left: "$", right: "$", display: false},
+                {left: "\\(", right: "\\)", display: false}
+            ]
+        };
+        </script>
+        <script defer src="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+        
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?e4f3a7c02ac2aabc41a1cfa95f61a026";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+if(window.location.hash){
+    var checkExist = setInterval(function() {
+       if ($(window.location.hash).length) {
+          $('html, body').animate({scrollTop: $(window.location.hash).offset().top-90}, 1000);
+          clearInterval(checkExist);
+       }
+    }, 100);
+}
+</script>
+<script>
+if(window.navigator && navigator.serviceWorker) {
+  caches.keys().then(function(cacheNames) {
+    cacheNames.forEach(function(cacheName) {
+      caches.delete(cacheName);
+    });
+  }).then(function(){
+    console.log('Cache cleaned.');
+  });
+  navigator.serviceWorker.getRegistrations()
+  .then(function(registrations) {
+    for(let registration of registrations) {
+      registration.unregister();
+    }
+  }).then(function(){
+    console.log('Service Worker stopped.');
+  });
+}
+</script>
+
+    </body>
+</html>
