@@ -32,19 +32,20 @@
         });
     </script>
     
-<title>Category: Github - 稳妥国字脸</title>
+<title>rm - 稳妥国字脸</title>
 <meta name="author" content="Dragon" />
-<meta name="description" content="7.24也算个节日了么?" />
-<meta property="og:title" content="Category: Github - 稳妥国字脸" />
-<meta property="og:description" content="7.24也算个节日了么?" />
+<meta name="description" content="屏蔽高危rm命令方案" />
+<meta property="og:title" content="rm - 稳妥国字脸" />
+<meta property="og:description" content="屏蔽高危rm命令方案" />
 <meta property="og:site_name" content="稳妥国字脸" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://blog.wooocloud.com/category/Github/" />
-<meta property="og:image" content="稳妥国字脸" />
-<meta name="twitter:title" content="Category: Github - 稳妥国字脸" />
-<meta name="twitter:description" content="7.24也算个节日了么?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.wooocloud.com/archives/rm/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2020-05-21T16:00:00-00.00" />
+<meta name="twitter:title" content="rm - 稳妥国字脸" />
+<meta name="twitter:description" content="屏蔽高危rm命令方案" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png" />
+<meta name="twitter:image" content="" />
 
 
     
@@ -70,7 +71,7 @@
 
     </head>
     
-    <body class="archive">
+    <body class="content">
         <header>
             <div class="container">
                 <section>
@@ -110,7 +111,7 @@
                     
                     <section>
                         
-    <div class=" "><span><a href="https://blog.wooocloud.com/category/Linux/">Linux</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="https://blog.wooocloud.com/archives/rm/">rm</a></li><li class=""><a href="https://blog.wooocloud.com/archives/history/">history</a></li><li class=""><a href="https://blog.wooocloud.com/archives/openvpn-in-centos7/">CentOS7部署openvpn</a></li><li class=""><a href="https://blog.wooocloud.com/archives/vim-modify-save/">vim自动备份修改之前的文件</a></li></ul></div><div class=" "><span><a href="https://blog.wooocloud.com/category/Python/">Python</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="https://blog.wooocloud.com/archives/psutil/">psutil</a></li></ul></div><div class="open current"><span><a href="https://blog.wooocloud.com/category/Github/">Github</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="https://blog.wooocloud.com/archives/first-blog/">First Blog</a></li></ul></div>
+    <div class="open "><span><a href="https://blog.wooocloud.com/category/Linux/">Linux</a><button class="toggle_sidebar fa"></button></span><ul><li class="current"><a href="https://blog.wooocloud.com/archives/rm/">rm</a></li><li class=""><a href="https://blog.wooocloud.com/archives/history/">history</a></li><li class=""><a href="https://blog.wooocloud.com/archives/openvpn-in-centos7/">CentOS7部署openvpn</a></li><li class=""><a href="https://blog.wooocloud.com/archives/vim-modify-save/">vim自动备份修改之前的文件</a></li></ul></div><div class=" "><span><a href="https://blog.wooocloud.com/category/Python/">Python</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="https://blog.wooocloud.com/archives/psutil/">psutil</a></li></ul></div><div class=" "><span><a href="https://blog.wooocloud.com/category/Github/">Github</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="https://blog.wooocloud.com/archives/first-blog/">First Blog</a></li></ul></div>
 
                     </section>
                     <section hidden class="sidebar-external-link">
@@ -124,42 +125,121 @@
                 </aside>
                 <div id="content-wrapper">
                     <div id="content">
-
     <section>
-        <h1 class="page-title">CATEGORY: Github</h1>
-        <div id="content-list">
-            
-
-
-            <section class="card-list">
+        <h1 class="post-title">rm</h1>
+        <p class="post-meta">
+            <time>May 21 2020</time>
+            <span class="tags">
                 
-                    <a class="card" href="https://blog.wooocloud.com/archives/first-blog/">
-                        <time>January 16 2020</time>
-                        <span>First Blog</span>
-                    </a>
+                <span>
+                    <a href="https://blog.wooocloud.com/tag/Linux/">#Linux</a>
+                </span>
                 
-            </section>
-        </div>
+                <span>
+                    <a href="https://blog.wooocloud.com/tag/rm/">#rm</a>
+                </span>
+                
+            </span>
+        </p>
+        <article class="yue"><h3>方案1 <code>safe-rm</code> 替换 <code>rm</code></h3>
+
+<pre><code>safe-rm 是一个开源软件工具,来替代不太安全的 rm.
+/etc/safe-rm.conf 配置路径黑名单,定义哪些不能被 safe-rm 删除.
+将 safe-rm 更名为 rm,假设定义了 /etc/ 无能被删除，那么删除 /etc 时就会报错： 
+</code></pre>
+<div class="highlight"><pre><span></span>rm -rf /etc/
+safe-rm: skipping /etc/
+</pre></div>
+<h3>方案2 建立回收站机制</h3>
+<p>1）创建回收站目录</p>
+<div class="highlight"><pre><span></span>mkdir /home/.trash
+</pre></div>
+<p>2）编写 remove.sh 脚本，内容如下</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nv">TRASH_DIR</span><span class="o">=</span><span class="s2">&quot;/data/.trash&quot;</span>
+
+<span class="k">for</span> i in <span class="nv">$*</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nv">STAMP</span><span class="o">=</span><span class="sb">`</span>date +%s<span class="sb">`</span>
+    <span class="nv">fileName</span><span class="o">=</span><span class="sb">`</span>basename <span class="nv">$i</span><span class="sb">`</span>
+
+    <span class="c1"># 将需要删除的文件mv至.trash目录</span>
+    mv <span class="nv">$i</span> <span class="si">${</span><span class="nv">TRASH_DIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fileName</span><span class="si">}</span>.<span class="si">${</span><span class="nv">STAMP</span><span class="si">}</span>
+<span class="k">done</span>
+</pre></div>
+<p>3）修改 ~/.bashrc， 用我们自建的 remove.sh 替代 rm 命令</p>
+<div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">rm</span><span class="o">=</span><span class="s2">&quot;sh /home/remove.sh&quot;</span>
+</pre></div>
+<p>4）设置 crontab，定期清空垃圾箱，如每天 0 点清空垃圾箱：</p>
+<div class="highlight"><pre><span></span><span class="m">0</span> <span class="m">0</span> * * * rm -rf /home/.trash/*
+</pre></div>
+<p>5）最后，执行以下命令，使之生效</p>
+<div class="highlight"><pre><span></span><span class="nb">source</span> ~/.bashrc
+</pre></div>
+<h3>方案3 bashrc实现</h3>
+<div class="highlight"><pre><span></span>mkdir /data/.trash  <span class="c1"># 创建回收站</span>
+vim .bashrc
+添加如下内容
+<span class="c1">#修改rm</span>
+<span class="c1">#####</span>
+<span class="nb">alias</span> <span class="nv">rm</span><span class="o">=</span>trash  <span class="c1"># 将rm链接到trash函数</span>
+<span class="nb">alias</span> <span class="nv">r</span><span class="o">=</span>trash
+<span class="nb">alias</span> <span class="nv">rl</span><span class="o">=</span><span class="s1">&#39;ls /data/.trash&#39;</span>  <span class="c1"># 查看回收站内容</span>
+<span class="nb">alias</span> <span class="nv">ur</span><span class="o">=</span>undelfile  <span class="c1"># 还原回收站指定内容到当前所在目录</span>
+undelfile<span class="o">()</span>
+<span class="o">{</span>
+  mv -i /data/.trash/<span class="se">\$</span>@ ./
+<span class="o">}</span>
+trash<span class="o">()</span>
+<span class="o">{</span>
+  mv <span class="nv">$@</span> /data/.trash
+<span class="o">}</span>
+cleartrash<span class="o">()</span>    <span class="c1"># 清空回收站所有内容</span>
+<span class="o">{</span> 
+    <span class="nb">read</span> -p <span class="s2">&quot;clear sure?[n]&quot;</span> confirm
+    <span class="o">[</span> <span class="nv">$confirm</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="nv">$confirm</span> <span class="o">==</span> <span class="s1">&#39;Y&#39;</span> <span class="o">]</span>  <span class="o">&amp;&amp;</span> /bin/rm -rf /data/.trash/*  
+<span class="o">}</span> 
+<span class="c1"># 执行生效</span>
+<span class="nb">source</span> .bashrc
+</pre></div>
+</article>
     </section>
+
+    
+    <section id="content-pager">
+        
+        
+            <div class="prev">
+                <a class="card" href="https://blog.wooocloud.com/archives/history/">
+                    <time>May 21 2020</time>
+                    <span>history</span>
+                </a>
+            </div>
+        
+    </section>
+    
 
     
 
     <script>
-        document.body.classList.add('archive');
-        document.body.classList.remove('content');
+        document.body.classList.add('content');
+        document.body.classList.remove('archive');
     </script>
-
 </div>
                     <footer>
                         <span>Copyright © 2020 Dragon</span>
                         
+    
+
                         <span class="addon">
 <a no-style href="http://beian.miit.gov.cn" target="_blank"></a>
 </span>
                     </footer>
                 </div>
                 
-<aside id="toc-container" class="no-scrollbar no-bg"></aside>
+<aside id="toc-container" class="no-scrollbar">
+    <span><i class="fa fa-align-right"></i> CONTENTS</span>
+    <div id="toc"></div>
+</aside>
 
             </div>
         </main>

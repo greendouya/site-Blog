@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>https://blog.wooocloud.com/</id><title>稳妥国字脸</title><updated>2020-05-13T03:46:36.270095+08:06</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email></author><link href="https://blog.wooocloud.com/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</logo><subtitle>7.24也算个节日了么?</subtitle><entry><id>https://blog.wooocloud.com/archives/first-blog/</id><title>First Blog</title><updated>2020-05-13T03:46:36.270443+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;这是第一篇博客
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>https://blog.wooocloud.com/</id><title>稳妥国字脸</title><updated>2020-05-21T09:28:49.481830+08:06</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email></author><link href="https://blog.wooocloud.com/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>https://cdn.jsdelivr.net/gh/greendouya/site-Blog@gh-pages/android-chrome-512x512.png</logo><subtitle>7.24也算个节日了么?</subtitle><entry><id>https://blog.wooocloud.com/archives/first-blog/</id><title>First Blog</title><updated>2020-05-21T09:28:49.482101+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;这是第一篇博客
 感谢&lt;code&gt;Maverick&lt;/code&gt; &amp;amp; &lt;code&gt;Galileo&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;感谢&lt;a href="https://github.com/AlanDecode"&gt;AlanDecode&lt;/a&gt;&lt;/p&gt;
-</content><link href="https://blog.wooocloud.com/archives/first-blog/" rel="alternate"/><published>2020-01-16T09:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/vim-modify-save/</id><title>vim自动备份修改之前的文件</title><updated>2020-05-13T03:46:36.270413+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;vim ~/.vimrc&lt;/p&gt;
+</content><link href="https://blog.wooocloud.com/archives/first-blog/" rel="alternate"/><published>2020-01-16T09:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/vim-modify-save/</id><title>vim自动备份修改之前的文件</title><updated>2020-05-21T09:28:49.482071+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;p&gt;vim ~/.vimrc&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;set backup
 function Bkdir()
@@ -16,7 +16,7 @@ endfunction
 au BufWrite * call Bkdir()
 autocmd BufWritePre * let &amp;amp;bex = '_'.strftime("%Y%m%d_%H_%M_%S")
 let &amp;amp;backupdir=expand("$HOME/.vim/backup").expand("%:p:h")&lt;/code&gt;&lt;/pre&gt;
-</content><link href="https://blog.wooocloud.com/archives/vim-modify-save/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/openvpn-in-centos7/</id><title>CentOS7部署openvpn</title><updated>2020-05-13T03:46:36.270375+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;h3&gt;安装软件包&lt;/h3&gt;
+</content><link href="https://blog.wooocloud.com/archives/vim-modify-save/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/openvpn-in-centos7/</id><title>CentOS7部署openvpn</title><updated>2020-05-21T09:28:49.482041+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;h3&gt;安装软件包&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;yum install -y epel-release
 yum install -y openvpn easy-rsa openssl openssl-devel lzo lzo-devel pam pam-devel automake pkgconfig&lt;/code&gt;&lt;/pre&gt;
@@ -218,9 +218,7 @@ verb 3&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;将下载到本地的客户端证书和客户端配置文件拷贝至openvpn目录的config目录中&lt;/h3&gt;
 &lt;h3&gt;启动&lt;/h3&gt;
 &lt;h3&gt;参考: &lt;a href="https://segmentfault.com/a/1190000019502850"&gt;Centos7 安装openvpn by easy-rsa3.0&lt;/a&gt; 操作整理&lt;/h3&gt;
-</content><link href="https://blog.wooocloud.com/archives/openvpn-in-centos7/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/psutil/</id><title>psutil</title><updated>2020-05-13T03:46:36.270171+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;blockquote&gt;&lt;h1&gt;psutil&lt;/h1&gt;
-&lt;/blockquote&gt;
-&lt;h3&gt;CPU相关&lt;/h3&gt;
+</content><link href="https://blog.wooocloud.com/archives/openvpn-in-centos7/" rel="alternate"/><published>2020-01-16T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/psutil/</id><title>psutil</title><updated>2020-05-21T09:28:49.482009+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;h3&gt;CPU相关&lt;/h3&gt;
 &lt;table&gt;
 &lt;thead&gt;&lt;tr&gt;
 &lt;th&gt;函数&lt;/th&gt;
@@ -463,4 +461,67 @@ terminate：发送SIGTEAM信号结束进程
 &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</content><link href="https://blog.wooocloud.com/archives/psutil/" rel="alternate"/><published>2020-05-13T12:00:00+08:06</published></entry></feed>
+</content><link href="https://blog.wooocloud.com/archives/psutil/" rel="alternate"/><published>2020-05-13T12:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/history/</id><title>history</title><updated>2020-05-21T09:28:49.481973+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>
+&lt;pre&gt;&lt;code&gt;echo "export HISTTIMEFORMAT=\"%F %T \"" &amp;gt;&amp;gt; /etc/profile
+source /etc/profile&lt;/code&gt;&lt;/pre&gt;
+</content><link href="https://blog.wooocloud.com/archives/history/" rel="alternate"/><published>2020-05-21T16:00:00+08:06</published></entry><entry><id>https://blog.wooocloud.com/archives/rm/</id><title>rm</title><updated>2020-05-21T09:28:49.481909+00:00</updated><author><name>Dragon</name><email>gotspinach@foxmail.com</email><uri>http://blog.wooocloud.com</uri></author><content>&lt;h3&gt;方案1 &lt;code&gt;safe-rm&lt;/code&gt; 替换 &lt;code&gt;rm&lt;/code&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;safe-rm 是一个开源软件工具,来替代不太安全的 rm.
+/etc/safe-rm.conf 配置路径黑名单,定义哪些不能被 safe-rm 删除.
+将 safe-rm 更名为 rm,假设定义了 /etc/ 无能被删除，那么删除 /etc 时就会报错： 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rm -rf /etc/
+safe-rm: skipping /etc/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;方案2 建立回收站机制&lt;/h3&gt;
+&lt;p&gt;1）创建回收站目录&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir /home/.trash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;2）编写 remove.sh 脚本，内容如下&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nv"&gt;TRASH_DIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/data/.trash&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; i in &lt;span class="nv"&gt;$*&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+    &lt;span class="nv"&gt;STAMP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;date +%s&lt;span class="sb"&gt;`&lt;/span&gt;
+    &lt;span class="nv"&gt;fileName&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;basename &lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# 将需要删除的文件mv至.trash目录&lt;/span&gt;
+    mv &lt;span class="nv"&gt;$i&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;TRASH_DIR&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;fileName&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;.&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;STAMP&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;3）修改 ~/.bashrc， 用我们自建的 remove.sh 替代 rm 命令&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;alias&lt;/span&gt; &lt;span class="nv"&gt;rm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sh /home/remove.sh&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;4）设置 crontab，定期清空垃圾箱，如每天 0 点清空垃圾箱：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; * * * rm -rf /home/.trash/*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;5）最后，执行以下命令，使之生效&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; ~/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;方案3 bashrc实现&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir /data/.trash  &lt;span class="c1"&gt;# 创建回收站&lt;/span&gt;
+vim .bashrc
+添加如下内容
+&lt;span class="c1"&gt;#修改rm&lt;/span&gt;
+&lt;span class="c1"&gt;#####&lt;/span&gt;
+&lt;span class="nb"&gt;alias&lt;/span&gt; &lt;span class="nv"&gt;rm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;trash  &lt;span class="c1"&gt;# 将rm链接到trash函数&lt;/span&gt;
+&lt;span class="nb"&gt;alias&lt;/span&gt; &lt;span class="nv"&gt;r&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;trash
+&lt;span class="nb"&gt;alias&lt;/span&gt; &lt;span class="nv"&gt;rl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ls /data/.trash&amp;#39;&lt;/span&gt;  &lt;span class="c1"&gt;# 查看回收站内容&lt;/span&gt;
+&lt;span class="nb"&gt;alias&lt;/span&gt; &lt;span class="nv"&gt;ur&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;undelfile  &lt;span class="c1"&gt;# 还原回收站指定内容到当前所在目录&lt;/span&gt;
+undelfile&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+  mv -i /data/.trash/&lt;span class="se"&gt;\$&lt;/span&gt;@ ./
+&lt;span class="o"&gt;}&lt;/span&gt;
+trash&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+  mv &lt;span class="nv"&gt;$@&lt;/span&gt; /data/.trash
+&lt;span class="o"&gt;}&lt;/span&gt;
+cleartrash&lt;span class="o"&gt;()&lt;/span&gt;    &lt;span class="c1"&gt;# 清空回收站所有内容&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt; 
+    &lt;span class="nb"&gt;read&lt;/span&gt; -p &lt;span class="s2"&gt;&amp;quot;clear sure?[n]&amp;quot;&lt;/span&gt; confirm
+    &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$confirm&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;y&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$confirm&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Y&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;  &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /bin/rm -rf /data/.trash/*  
+&lt;span class="o"&gt;}&lt;/span&gt; 
+&lt;span class="c1"&gt;# 执行生效&lt;/span&gt;
+&lt;span class="nb"&gt;source&lt;/span&gt; .bashrc
+&lt;/pre&gt;&lt;/div&gt;
+</content><link href="https://blog.wooocloud.com/archives/rm/" rel="alternate"/><published>2020-05-21T16:00:00+08:06</published></entry></feed>
